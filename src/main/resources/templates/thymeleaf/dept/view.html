@@ -1,6 +1,11 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/boards}">
+	
+<head>
+<link rel="stylesheet" href="../css/bootstrap.css" th:remove="all">
+<link rel="stylesheet" href="../css/animate.css" th:remove="all">
+</head>
 
 <div layout:fragment="content">
 
@@ -8,46 +13,34 @@
 	<div class="panel-body">
 
 		<div class="form-group">
-			<label>BNO</label> <input class="form-control" name="bno"
-				th:value="${vo.bno}" readonly="readonly" />
+			<label>Deptno</label> <input class="form-control" name="deptno"
+				th:value="${vo.deptno}" readonly="readonly" />
+			<p class="help-block">deptno text here.</p>
 		</div>
 
 		<div class="form-group">
-			<label>Title</label> <input class="form-control" name="title"
-				th:value="${vo.title}" readonly="readonly" />
-			<p class="help-block">Title text here.</p>
+			<label>Dname</label> <input class="form-control" name="dname"
+				th:value="${vo.dname}" readonly="readonly" />
 		</div>
 
 		<div class="form-group">
-			<label>Content</label>
-			<textarea class="form-control" rows="3" name='content'
-				th:text="${vo.content}" readonly="readonly"></textarea>
+			<label>Loc</label> <input class="form-control" name="loc"
+				th:value="${vo.loc}" readonly="readonly" />
 		</div>
-
-		<div class="form-group">
-			<label>Writer</label> <input class="form-control" name="writer"
-				th:value="${vo.writer}" readonly="readonly" />
-		</div>
-
-		<div class="form-group">
-			<label>RegDate</label> <input class="form-control" name="regDate"
-				th:value="${#dates.format(vo.regdate,'yyyy-MM-dd')}"
-				readonly="readonly" />
-		</div>
-
+		
 		<div class="pull-right">
 			<a th:href="@{ modify(page=${pageVO.page}, 
 			                size=${pageVO.size}, 
 			                type=${pageVO.type}, 
 			                keyword=${pageVO.keyword},
-			                bno =${vo.bno}
+			                deptno =${vo.deptno}
 			             )}" class="btn btn-default">Modify/Delete</a> 
 			             
 			<a th:href="@{ list(page=${pageVO.page}, 
 			                size=${pageVO.size}, 
 			                type=${pageVO.type}, 
 			                keyword=${pageVO.keyword},
-			                bno = ${vo.bno}
+			                deptno = ${vo.deptno}
 			             )}" class="btn btn-primary">Go List</a> 
 		</div>
 

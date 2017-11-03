@@ -3,6 +3,7 @@ package com.example.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,7 +24,7 @@ import lombok.ToString;
 
 
 @Entity	// JPA에서 엔티티를 관리하기 위해 준다. 테이블을 내가 만들어준다. 이걸로.
-@Table(name="tbl_emp")
+@Table(name="p_emp")
 @Data
 @ToString(exclude={"mgr", "dept"})
 public class EmpVO {
@@ -33,10 +34,6 @@ public class EmpVO {
 	}
 	
 	@Id
-	@TableGenerator(name = "idGen", table = "id_gen", 
-					  pkColumnName = "seq_name", valueColumnName = "nextval", 
-					  allocationSize = 10, initialValue = 7000)
-	@GeneratedValue(strategy=GenerationType.TABLE, generator="idGen")
 	private Integer empno;
 	private String ename;
 	@Enumerated(EnumType.STRING)

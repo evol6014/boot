@@ -9,19 +9,26 @@ update emp
  where gender = 'f';
 commit; 
 
-select * from tbl_dept;
-select * from tbl_emp;
+select * from p_dept;
+select * from p_emp;
 
-delete from tbl_dept where deptno = 132;
+delete from p_emp where empno=3000 ;
 
-select * from tbl_dept where deptno = 50;
+delete from p_dept where dname = "감찰부";
 
-insert into tbl_dept
+insert into p_dept
 select * from dept;
 
-insert into tbl_emp
+insert into p_emp
 (comm, deptno, empno, ename, gender, hiredate, job, mgr, sal)
 select comm, deptno, empno, ename, gender, hiredate, job, mgr, sal from emp;
+
+insert into p_dept
+values(250, "감찰부", "청주");
+
+insert into p_dept
+(deptno, dname, loc)
+select deptno, dname, loc from dept;
 
 insert into tbl_city
 (ID, Name, countryCode, District, Population)
@@ -45,5 +52,4 @@ select * from id_gen;
 
 select * from id_gen; 
 
-delete table tbl_webboard;
 

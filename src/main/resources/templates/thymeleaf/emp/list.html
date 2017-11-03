@@ -5,6 +5,9 @@
 <head>
 <link rel="stylesheet" href="../css/bootstrap.css" th:remove="all">
 <link rel="stylesheet" href="../css/animate.css" th:remove="all">
+<style type="text/css">
+	th, td { text-align: center; }
+</style>
 </head>
 
 <div layout:fragment="content">
@@ -22,16 +25,34 @@
 				id="dataTables-example">
 				<thead>
 					<tr>
+						<th>EMPNO</th>
+						<th>ENAME</th>
+						<th>GENDER</th>
+						<th>JOB</th>
+						<th>MANAGER</th>
+						<th>HIREDATE</th>
+						<th>SALARY</th>
+						<th>COMMISSION</th>
 						<th>DEPTNO</th>
-						<th>DNAME</th>
-						<th>LOC</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="odd gradeX" th:each="dept:${result.content}">
-						<td>[[${dept.deptno}]]</td>
-						<td><a th:href="${dept.deptno}" class="boardLink">[[${dept.dname}]]</a></td>
-						<td>[[${dept.loc}]]</td>
+					<tr class="odd gradeX center"th:each="emp:${result.content}">
+						<td>[[${emp.empno}]]</td>
+						<td><a th:href="${emp.empno}" class="boardLink">[[${emp.ename}]]</a></td>
+						<th:block data-th-switch="${emp.gender.name()}">
+							<td data-th-case="M">남자</td>
+							<td data-th-case="F">여자</td>
+							<td data-th-case="*">???</td>
+						</th:block>
+						<td>[[${emp.job}]]</td>
+						<td>[[${emp.mgr == null ? 'No' : emp.mgr.ename}]]</td>
+						<td>
+							[[${#dates.format(emp.hiredate, 'yyyy-MM-dd')}]]
+						</td>
+						<td th:text="${#numbers.formatInteger(emp.sal, 3, 'COMMA')}"></td>
+						<td>[[${emp.comm}]]</td>
+						<td>[[${emp.dept?.deptno}]]</td>
 					</tr>
 				</tbody>
 			</table>
@@ -39,9 +60,12 @@
 			<div>
 				<select id="searchType">
 					<option>--</option>
-					<option value="n" th:selected="${pageVO.type} == 'n'">Deptno</option>
-					<option value="i" th:selected="${pageVO.type} == 'i'">Dname</option>
-					<option value="l" th:selected="${pageVO.type} == 'l'">Loc</option>
+					<option value="n" th:selected="${pageVO.type} == 'n'">Empno</option>
+					<option value="i" th:selected="${pageVO.type} == 'i'">Ename</option>
+					<option value="j" th:selected="${pageVO.type} == 'j'">Job</option>
+					<option value="s" th:selected="${pageVO.type} == 's'">Sal</option>
+					<option value="c" th:selected="${pageVO.type} == 'c'">Comm</option>
+					<option value="d" th:selected="${pageVO.type} == 'd'">deptno</option>
 				</select>
 				<input type="text" id="searchKeyword" th:value="${pageVO.keyword}">
 				<button id="searchBtn">Search</button>
@@ -112,8 +136,8 @@
 				
 				var boardNo = $(this).attr("href");
 				
-				formObj.attr("action",[[@{'/dept/view'}]]);
-				formObj.append("<input type='hidden' name='deptno' value='" + boardNo +"'>" );
+				formObj.attr("action",[[@{'/emp/view'}]]);
+				formObj.append("<input type='hidden' name='empno' value='" + boardNo +"'>" );
 				
 				formObj.submit();
 				

@@ -23,16 +23,12 @@ import lombok.ToString;
  */
 
 @Entity
-@Table(name = "tbl_dept")
+@Table(name = "p_dept")
 @Data
 @ToString(exclude = { "emps" })
 public class DeptVO {
 
 	@Id
-	@TableGenerator(name = "idGen", table = "id_gen", 
-					  pkColumnName = "seq_name", valueColumnName = "nextval", 
-					  allocationSize = 10, initialValue = 100)
-	@GeneratedValue(strategy=GenerationType.TABLE, generator="idGen")
 	private Integer deptno;
 	private String dname;
 	private String loc;
