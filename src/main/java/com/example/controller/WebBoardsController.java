@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.domain.WebBoard;
+import com.example.repository.WebBoardRepository;
 import com.example.vo.PageMaker;
 import com.example.vo.PageVO;
 import com.querydsl.core.types.Predicate;
@@ -24,7 +25,7 @@ import lombok.extern.java.Log;
 public class WebBoardsController {
 
 	@Autowired
-	private com.example.repository.WebBoardRepository repo;
+	private WebBoardRepository repo;
 	
 	@GetMapping("/register")
 	public String registerGET(@ModelAttribute("vo")WebBoard vo ){

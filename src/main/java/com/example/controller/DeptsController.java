@@ -20,7 +20,7 @@ import com.example.vo.PageVO;
 import lombok.extern.java.Log;
 
 @Controller
-@RequestMapping("/dept/")
+@RequestMapping("/depts/")
 @Log
 public class DeptsController {
 
@@ -42,7 +42,7 @@ public class DeptsController {
 		
 		model.addAttribute("pageMaker", new PageMaker<DeptVO>(result));
 		
-		return "thymeleaf/dept/list";
+		return "thymeleaf/depts/list";
 	}
 	
 	@GetMapping("/register")
@@ -52,7 +52,7 @@ public class DeptsController {
 		vo.setDname("부서 이름");
 		vo.setLoc("지역명");
 		
-		return "thymeleaf/dept/register";
+		return "thymeleaf/depts/register";
 	}
 	
 	@PostMapping("/register")
@@ -64,7 +64,7 @@ public class DeptsController {
 		repo.save(vo);
 		rttr.addFlashAttribute("msg", "success");
 		
-		return "redirect:/dept/list";
+		return "redirect:/depts/list";
 	}
 	
 	@GetMapping("/view")
@@ -74,7 +74,7 @@ public class DeptsController {
 		
 		repo.findById(deptno).ifPresent(dept -> model.addAttribute("vo", dept));
 		
-		return "thymeleaf/dept/view";
+		return "thymeleaf/depts/view";
 	}
 	
 	@GetMapping("/modify")
@@ -84,7 +84,7 @@ public class DeptsController {
 		
 		repo.findById(deptno).ifPresent(dept -> model.addAttribute("vo", dept));
 		
-		return "thymeleaf/dept/modify";
+		return "thymeleaf/depts/modify";
 	}
 	
 	@PostMapping("/modify")
@@ -109,7 +109,7 @@ public class DeptsController {
 		rttr.addAttribute("type", vo.getType());
 		rttr.addAttribute("keyword", vo.getKeyword());
 
-		return "redirect:/dept/view";
+		return "redirect:/depts/view";
 	}
 	
 	@PostMapping("/delete")
@@ -127,7 +127,7 @@ public class DeptsController {
 		rttr.addAttribute("type", vo.getType());
 		rttr.addAttribute("keyword", vo.getKeyword());
 
-		return "redirect:/dept/list";
+		return "redirect:/depts/list";
 	}
 }
 
