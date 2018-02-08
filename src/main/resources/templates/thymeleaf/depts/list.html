@@ -112,7 +112,7 @@
 				
 				var boardNo = $(this).attr("href");
 				
-				formObj.attr("action",[[@{'/dept/view'}]]);
+				formObj.attr("action",[[@{'/depts/view'}]]);
 				formObj.append("<input type='hidden' name='deptno' value='" + boardNo +"'>" );
 				
 				formObj.submit();

@@ -37,6 +37,8 @@
 	      <li><a href="http://localhost:8080/boards/list">Boards list</a></li>
 	      <li><a href="http://localhost:8080/bootstrap/list">Bootstrap list</a></li>
 	      <li><a href="http://localhost:8080/board/list">Board list</a></li>
+	      <li><a href="http://localhost:8080/dept/list">Dept list</a></li>
+	      <li><a href="http://localhost:8080/emp/list">Emp list</a></li>
 	    </ul>
 	  </div>
 	</nav>

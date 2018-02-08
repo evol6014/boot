@@ -19,10 +19,6 @@
 <body>
 <div class="panel-heading">List Page</div>
 	
-	<div class="panel-body pull-right">
-	<h3><a class="label label-default " href="/board/register">Register</a></h3>
-	</div>
-	
 	<div class="panel-body">
 		<c:set var="result" value="${pageMaker.result}"/>
 <%-- 		<div th:with="result=${pageMaker.result}"> 이건 타임리프 문법--%>
@@ -31,23 +27,46 @@
 				id="dataTables-example">
 				<thead>
 					<tr>
-						<th>BNO</th>
-						<th>TITLE</th>
-						<th>WRITER</th>
-						<th>REGDATE</th>
+						<th>EMPNO</th>
+						<th>ENAME</th>
+						<th>GENDER</th>
+						<th>JOB</th>
+						<th>MANAGER</th>
+						<th>HIREDATE</th>
+						<th>SALARY</th>
+						<th>COMMISSION</th>
+						<th>DEPTNO</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="board" items="${result.content}">
-<%-- 					<tr class="odd gradeX" th:each="board:${result.content}"> --%>
+					<c:forEach var="emp" items="${result.content}">
+<%-- 					<tr class="odd gradeX" th:each="emp:${result.content}"> --%>
 						<tr class="odd gradeX">
-							<td>${board.bno}</td>
-							<td><a href='${board.bno}' class='boardLink'>${board.title}</a></td>
-							<td>${board.writer}</td>
-							<td class="center">
-								<fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd"/>
-<%-- 							${#dates.format(board.regdate, 'yyyy-MM-dd')} --%>
+							<td>${emp.empno}</td>
+							<td><a href='${emp.empno}' class='empLink'>${emp.ename}</a></td>
+							<c:choose>
+							<c:when test="${emp.gender.name() == 'M'}">
+								<td>남자</td>
+							</c:when>
+							<c:when test="${emp.gender.name() == 'F'}">
+								<td>여자</td>
+							</c:when>
+							<c:otherwise>
+								<td>???</td>
+							</c:otherwise>
+							</c:choose>
+							
+							<td>${emp.job}</td>
+							<td>${emp.mgr == null ? 'No' : emp.mgr.ename}</td>
+							<td>
+								<fmt:formatDate value="${emp.hiredate}" pattern="yyyy-MM-dd"/>
 							</td>
+<%-- 							<td>${#numbers.formatInteger(emp.sal, 3, 'COMMA')}</td> --%>
+							<td>
+							<fmt:formatNumber value="${emp.sal}" type="number" />
+							</td>
+							<td>${emp.comm}</td>
+							<td>${emp.dept.deptno}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -56,13 +75,21 @@
 			<div>
 				<select id='searchType'>
 					<option>--</option>
-					<option value='t' ${pageVO.type =='t' ? 'selected' : ''}>Title</option>
-					<option value='c' ${pageVO.type =='c' ? 'selected' : ''}>Content</option>
-					<option value='w' ${pageVO.type =='w' ? 'selected' : ''}>Writer</option>
+					<option value='n' ${pageVO.type =='n' ? 'selected' : ''}>Empno</option>
+					<option value='i' ${pageVO.type =='i' ? 'selected' : ''}>Ename</option>
+					<option value='j' ${pageVO.type =='j' ? 'selected' : ''}>Job</option>
+					<option value='s' ${pageVO.type =='s' ? 'selected' : ''}>Sal</option>
+					<option value='c' ${pageVO.type =='c' ? 'selected' : ''}>Comm</option>
+					<option value='d' ${pageVO.type =='d' ? 'selected' : ''}>deptno</option>
 				</select>
 			  	<input type='text' id='searchKeyword' value="${pageVO.keyword}">
 			 	<button id='searchBtn'>Search</button> 
 			</div>
+			
+			<div class="panel-body pull-right">
+				<h3><a class="label label-default " href="/board/register">Register</a></h3>
+			</div>
+			
 
 		</div>
 
@@ -100,7 +127,7 @@
 
 	</div>
 	
-	<form id='f1' action="/board/list" method="get">
+	<form id='f1' action="/emp/list" method="get">
 		<input type='hidden' name='page' value="${pageMaker.currentPageNum}">
 		<input type='hidden' name='size' value="${pageMaker.currentPage.pageSize}">
 		<input type='hidden' name='type' value="${pageVO.type}">
@@ -133,14 +160,14 @@
 				formObj.submit();
 			});
 			
-			$(".boardLink").click(function(e){
+			$(".empLink").click(function(e){
 				
 				e.preventDefault(); 
 				
-				var boardNo = $(this).attr("href");
+				var empNo = $(this).attr("href");
 				
-				formObj.attr("action","/board/view");
-				formObj.append("<input type='hidden' name='bno' value='" + boardNo +"'>" );
+				formObj.attr("action","/emp/view");
+				formObj.append("<input type='hidden' name='empno' value='" + empNo +"'>" );
 				
 				formObj.submit();
 				

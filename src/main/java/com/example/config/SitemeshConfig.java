@@ -29,11 +29,11 @@ public class SitemeshConfig {
 			@Override
 			protected void applyCustomConfiguration(SiteMeshFilterBuilder builder) {
 				builder.addDecoratorPaths("/board/*", "/WEB-INF/decorators/board.jsp");
-				builder.addDecoratorPaths("/dept/*", "/WEB-INF/decorators/dept.jsp");
-				builder.addDecoratorPaths("/emp/*", "/WEB-INF/decorators/emp.jsp");
-				builder.addDecoratorPaths("/city/*", "/WEB-INF/decorators/city.jsp");
-				builder.addDecoratorPaths("/country/*", "/WEB-INF/decorators/country.jsp");
-				builder.addDecoratorPaths("/ontime/*", "/WEB-INF/decorators/ontime.jsp");
+				builder.addDecoratorPaths("/dept/*", "/WEB-INF/decorators/board.jsp");
+				builder.addDecoratorPaths("/emp/*", "/WEB-INF/decorators/board.jsp");
+				builder.addDecoratorPaths("/city/*", "/WEB-INF/decorators/board.jsp");
+				builder.addDecoratorPaths("/country/*", "/WEB-INF/decorators/board.jsp");
+				builder.addDecoratorPaths("/ontime/*", "/WEB-INF/decorators/board.jsp");
 				builder.addDecoratorPaths("/bootstrap/*", "/WEB-INF/decorators/bootstrap.jsp");
 				
 			}

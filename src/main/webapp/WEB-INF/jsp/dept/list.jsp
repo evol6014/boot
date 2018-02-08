@@ -19,10 +19,6 @@
 <body>
 <div class="panel-heading">List Page</div>
 	
-	<div class="panel-body pull-right">
-	<h3><a class="label label-default " href="/board/register">Register</a></h3>
-	</div>
-	
 	<div class="panel-body">
 		<c:set var="result" value="${pageMaker.result}"/>
 <%-- 		<div th:with="result=${pageMaker.result}"> 이건 타임리프 문법--%>
@@ -31,23 +27,18 @@
 				id="dataTables-example">
 				<thead>
 					<tr>
-						<th>BNO</th>
-						<th>TITLE</th>
-						<th>WRITER</th>
-						<th>REGDATE</th>
+						<th>DEPTNO</th>
+						<th>DNAME</th>
+						<th>LOC</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="board" items="${result.content}">
-<%-- 					<tr class="odd gradeX" th:each="board:${result.content}"> --%>
+					<c:forEach var="dept" items="${result.content}">
+<%-- 					<tr class="odd gradeX" th:each="dept:${result.content}"> --%>
 						<tr class="odd gradeX">
-							<td>${board.bno}</td>
-							<td><a href='${board.bno}' class='boardLink'>${board.title}</a></td>
-							<td>${board.writer}</td>
-							<td class="center">
-								<fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd"/>
-<%-- 							${#dates.format(board.regdate, 'yyyy-MM-dd')} --%>
-							</td>
+							<td>${dept.deptno}</td>
+							<td><a href='${dept.deptno}' class='deptLink'>${dept.dname}</a></td>
+							<td>${dept.loc}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -56,14 +47,17 @@
 			<div>
 				<select id='searchType'>
 					<option>--</option>
-					<option value='t' ${pageVO.type =='t' ? 'selected' : ''}>Title</option>
-					<option value='c' ${pageVO.type =='c' ? 'selected' : ''}>Content</option>
-					<option value='w' ${pageVO.type =='w' ? 'selected' : ''}>Writer</option>
+					<option value='n' ${pageVO.type =='n' ? 'selected' : ''}>Deptno</option>
+					<option value='i' ${pageVO.type =='i' ? 'selected' : ''}>Dname</option>
+					<option value='l' ${pageVO.type =='l' ? 'selected' : ''}>Loc</option>
 				</select>
 			  	<input type='text' id='searchKeyword' value="${pageVO.keyword}">
 			 	<button id='searchBtn'>Search</button> 
 			</div>
-
+			
+				<div class="panel-body pull-right">
+					<h3><a class="label label-default " href="/board/register">Register</a></h3>
+				</div>
 		</div>
 
 		<nav>
@@ -100,7 +94,7 @@
 
 	</div>
 	
-	<form id='f1' action="/board/list" method="get">
+	<form id='f1' action="/dept/list" method="get">
 		<input type='hidden' name='page' value="${pageMaker.currentPageNum}">
 		<input type='hidden' name='size' value="${pageMaker.currentPage.pageSize}">
 		<input type='hidden' name='type' value="${pageVO.type}">
@@ -133,14 +127,14 @@
 				formObj.submit();
 			});
 			
-			$(".boardLink").click(function(e){
+			$(".deptLink").click(function(e){
 				
 				e.preventDefault(); 
 				
-				var boardNo = $(this).attr("href");
+				var deptNo = $(this).attr("href");
 				
-				formObj.attr("action","/board/view");
-				formObj.append("<input type='hidden' name='bno' value='" + boardNo +"'>" );
+				formObj.attr("action","/dept/view");
+				formObj.append("<input type='hidden' name='deptno' value='" + deptNo +"'>" );
 				
 				formObj.submit();
 				

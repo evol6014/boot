@@ -39,7 +39,7 @@
 				<tbody>
 					<tr class="odd gradeX center"th:each="emp:${result.content}">
 						<td>[[${emp.empno}]]</td>
-						<td><a th:href="${emp.empno}" class="boardLink">[[${emp.ename}]]</a></td>
+						<td><a th:href="${emp.empno}" class="empLink">[[${emp.ename}]]</a></td>
 						<th:block data-th-switch="${emp.gender.name()}">
 							<td data-th-case="M">남자</td>
 							<td data-th-case="F">여자</td>
@@ -130,14 +130,14 @@
 				formObj.submit();
 			});	
 			
-			$(".boardLink").click(function(e){
+			$(".empLink").click(function(e){
 				
 				e.preventDefault(); 
 				
-				var boardNo = $(this).attr("href");
+				var empNo = $(this).attr("href");
 				
-				formObj.attr("action",[[@{'/emp/view'}]]);
-				formObj.append("<input type='hidden' name='empno' value='" + boardNo +"'>" );
+				formObj.attr("action",[[@{'/emps/view'}]]);
+				formObj.append("<input type='hidden' name='empno' value='" + empNo +"'>" );
 				
 				formObj.submit();
 				
