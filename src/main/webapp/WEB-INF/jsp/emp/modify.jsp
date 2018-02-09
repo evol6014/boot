@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>modify.jsp</title>
+<title>emp modify.jsp</title>
 
 <c:if test="${false}">
 <link rel="stylesheet" href="../../css/bootstrap.css">
@@ -15,30 +15,47 @@
 
 </head>
 <body>
-	<div class="panel-heading"><b>Board Modify Page</b></div>
+	<div class="panel-heading"><b>Emp Modify Page</b></div>
 	<div class="panel-body">
 
     <form id='f1'>
 
-		<div class="form-group">
-			<label>BNO</label> 
-			<input class="form-control" name="bno" value="${vo.bno}" readonly="readonly" />
+<div class="form-group">
+			<label>Empno</label> <input class="form-control" name="empno" readonly="readonly"
+				value="${vo.empno}" />
 		</div>
-
 		<div class="form-group">
-			<label>Title</label> 
-			<input class="form-control" name="title" value="${vo.title}" />
-			<p class="help-block">Title text here.</p>
+			<label>Ename</label> <input class="form-control" name="ename"
+				value="${vo.ename}" />
+			<p class="help-block">Ename text here.</p>
 		</div>
-
 		<div class="form-group">
-			<label>Content</label>
-			<textarea class="form-control" rows="3" name='content'>${vo.content}</textarea>
+			<label>Gender</label> <input class="form-control" name="gender"
+				value="${vo.gender}" />
 		</div>
-
 		<div class="form-group">
-			<label>Writer</label> 
-			<input class="form-control" name="writer" value="${vo.writer}" readonly="readonly" />
+			<label>Job</label> <input class="form-control" name="job"
+				value="${vo.job}" />
+		</div>
+		<div class="form-group">
+			<label>Manager</label> <input class="form-control" name="mgr"
+				value="${vo.mgr.empno}" />
+		</div>
+		<div class="form-group">
+			<label>Hiredate</label> <input class="form-control" name="hiredate"
+				value="${vo.hiredate}" />
+		</div>
+		<div class="form-group">
+			<label>Salary</label> <input class="form-control" name="sal"
+				value="${vo.sal}" />
+		</div>
+		<div class="form-group">
+			<label>Commission</label> <input class="form-control" name="comm"
+				value="${vo.comm}" />
+		</div>
+		<div class="form-group">
+			<label>Deptno</label> <input class="form-control" name="dept"
+				value="${vo.dept.deptno}" />
 		</div>
 		
 		<input type='hidden' name="page" value="${pageVO.page}">
@@ -48,17 +65,11 @@
 		
 		</form>
 
-		<div class="form-group">
-			<label>RegDate</label> 
-			<fmt:formatDate var="regdate" value="${vo.regdate}" pattern="yyyy-MM-dd"/>
-			<input class="form-control" name="regDate" value="${regdate}" readonly="readonly" />
-		</div>
-
 		<div class="pull-right">
 		
 			<a href="#" class="btn btn-warning modbtn">Modify</a>
 			<a href="#" class="btn btn-danger delbtn">Delete</a>
-			<a href="/board/list?${pageVO.page}&size=${pageVO.size}&type=${pageVO.type}&keyword=${pageVO.keyword}&bno=${vo.bno}" 
+			<a href="/dept/list?${pageVO.page}&size=${pageVO.size}&type=${pageVO.type}&keyword=${pageVO.keyword}&empno=${vo.empno}" 
 				class="btn btn-primary">Cancel & Go List</a> 
 		</div>
 

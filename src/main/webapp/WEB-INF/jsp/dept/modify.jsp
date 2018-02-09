@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>modify.jsp</title>
+<title>dept modify.jsp</title>
 
 <c:if test="${false}">
 <link rel="stylesheet" href="../../css/bootstrap.css">
@@ -15,30 +15,25 @@
 
 </head>
 <body>
-	<div class="panel-heading"><b>Board Modify Page</b></div>
+	<div class="panel-heading"><b>Dept Modify Page</b></div>
 	<div class="panel-body">
 
     <form id='f1'>
 
 		<div class="form-group">
-			<label>BNO</label> 
-			<input class="form-control" name="bno" value="${vo.bno}" readonly="readonly" />
+			<label>Deptno</label> 
+			<input class="form-control" name="deptno" value="${vo.deptno}" readonly="readonly" />
 		</div>
 
 		<div class="form-group">
-			<label>Title</label> 
-			<input class="form-control" name="title" value="${vo.title}" />
-			<p class="help-block">Title text here.</p>
+			<label>Dname</label> 
+			<input class="form-control" name="dname" value="${vo.dname}" />
+			<p class="help-block">Dname text here.</p>
 		</div>
 
 		<div class="form-group">
-			<label>Content</label>
-			<textarea class="form-control" rows="3" name='content'>${vo.content}</textarea>
-		</div>
-
-		<div class="form-group">
-			<label>Writer</label> 
-			<input class="form-control" name="writer" value="${vo.writer}" readonly="readonly" />
+			<label>Loc</label> 
+			<input class="form-control" name="loc" value="${vo.loc}" />
 		</div>
 		
 		<input type='hidden' name="page" value="${pageVO.page}">
@@ -48,17 +43,11 @@
 		
 		</form>
 
-		<div class="form-group">
-			<label>RegDate</label> 
-			<fmt:formatDate var="regdate" value="${vo.regdate}" pattern="yyyy-MM-dd"/>
-			<input class="form-control" name="regDate" value="${regdate}" readonly="readonly" />
-		</div>
-
 		<div class="pull-right">
 		
 			<a href="#" class="btn btn-warning modbtn">Modify</a>
 			<a href="#" class="btn btn-danger delbtn">Delete</a>
-			<a href="/board/list?${pageVO.page}&size=${pageVO.size}&type=${pageVO.type}&keyword=${pageVO.keyword}&bno=${vo.bno}" 
+			<a href="/dept/list?${pageVO.page}&size=${pageVO.size}&type=${pageVO.type}&keyword=${pageVO.keyword}&deptno=${vo.deptno}" 
 				class="btn btn-primary">Cancel & Go List</a> 
 		</div>
 

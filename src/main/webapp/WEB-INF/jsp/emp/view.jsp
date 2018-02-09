@@ -15,7 +15,7 @@
 
 </head>
 <body>
-	<div class="panel-heading">View Page</div>
+	<div class="panel-heading"><b>Emp View Page</b></div>
 	<div class="panel-body">
 
 		<div class="form-group">

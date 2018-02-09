@@ -17,13 +17,10 @@
 
 
 <body>
-<div class="panel-heading">List Page</div>
-	
-	<div class="panel-body pull-right">
-	<h3><a class="label label-default " href="/board/register">Register</a></h3>
-	</div>
+<div class="panel-heading"><b>Board List Page</b></div>
 	
 	<div class="panel-body">
+		<p>${pageMaker.result}</p>
 		<c:set var="result" value="${pageMaker.result}"/>
 <%-- 		<div th:with="result=${pageMaker.result}"> 이건 타임리프 문법--%>
 		<div>
@@ -62,6 +59,10 @@
 				</select>
 			  	<input type='text' id='searchKeyword' value="${pageVO.keyword}">
 			 	<button id='searchBtn'>Search</button> 
+			</div>
+	
+			<div class="panel-body pull-right">
+				<h3><a class="label label-default " href="/board/register">Register</a></h3>
 			</div>
 
 		</div>
