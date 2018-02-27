@@ -50,6 +50,8 @@ public class PageMaker<T> {
 		}
 		this.prevPage = startPage.getPageNumber() <= 0 ? null : startPage.previousOrFirst();
 
+//		log.info("tempEndNum: " + tempEndNum);
+//		log.info("total: "+ totalPageNum);
 		
 		if(this.totalPageNum < tempEndNum){
 			tempEndNum = this.totalPageNum;

@@ -23,6 +23,32 @@
 					th:value="${vo.ename}" />
 				<p class="help-block">Ename text here.</p>
 			</div>
+<!-- 			<div class="form-group">
+				<label>Gender</label>
+				<select name="gender">
+					<option>--</option>
+					<option>M</option>
+					<option>F</option>
+				</select>
+			
+				<label>Job</label>
+				<select name="job">
+					<option>--</option>
+					<option>부장</option>
+					<option>차장</option>
+					<option>과장</option>
+					<option>대리</option>
+					<option>사원</option>
+				</select>
+			
+				<label>Deptno</label>
+				<select name="deptno">
+					<option>--</option>
+					<option>10</option>
+					<option>20</option>
+					<option>30</option>
+				</select>
+	 			</div> -->
 			<div class="form-group">
 				<label>Gender</label> <input class="form-control" name="gender"
 					th:value="${vo.gender}" />
@@ -39,6 +65,11 @@
 				<label>Hiredate</label> <input class="form-control" name="hiredate"
 					th:value="${vo.hiredate}" />
 			</div>
+<!-- 		<div class="form-group"> 
+				<label>Hiredate</label>
+				<input class="form-control" name="hiredate" th:value="${#dates.format(vo.hiredate, 'MM/dd/yyyy')}"/>
+				<p class="help-block">mm/dd/yyyy</p>
+ 			</div> -->
 			<div class="form-group">
 				<label>Salary</label> <input class="form-control" name="sal"
 					th:value="${vo.sal}" />

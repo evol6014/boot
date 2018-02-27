@@ -27,6 +27,7 @@ public class EmpController {
 	@Inject
 	EmpsRepository repo;
 	
+	// return 없으면 이것을 논리적인 view로 봄.
 	@GetMapping("/list")
 	public String list(@ModelAttribute("pageVO") PageVO vo, Model model) {
 		
@@ -56,6 +57,9 @@ public class EmpController {
 	@PostMapping("/register")
 	public String registerPOST(@ModelAttribute("vo") EmpVO vo, 
 													RedirectAttributes rttr) {
+		// 요청으로 들어온 bind된 object를 Model에 Attribute로 추가시켜준다
+		// RedirectAttributes 여러 번 게시물을 등록하는 것을 방지 ( 등록 알림 처리 )
+		
 		log.info("register post");
 		log.info("" +  vo);
 		

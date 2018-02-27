@@ -23,6 +23,32 @@
 				th:value="${vo.ename}" />
 			<p class="help-block">Ename text here.</p>
 		</div>
+<!-- 	<div class="form-group">
+				<label>성별</label> 
+				<select name="gender" th:value="${vo.gender}">
+					<option>[[${vo.gender.name()} == 'F' ? 'F' : 'M']]</option>
+					<option th:selected="${vo.gender} == 'M'">M</option>
+					<option th:selected="${vo.gender} == 'F'">F</option>
+				</select>
+				
+				<label>직급</label>
+				<select name="job" th:value="${vo.job}">
+					<option selected="selected">[[${vo.job}]]</option>
+					<option th:if="${vo.job != '부장'}">부장</option>
+					<option th:if="${vo.job != '차장'}">차장</option>
+					<option th:if="${vo.job != '과장'}">과장</option>
+					<option th:if="${vo.job != '대리'}">대리</option>
+					<option th:if="${vo.job != '사원'}">사원</option>
+				</select>
+				
+				<label>부서번호</label>
+				<select name="deptno" th:value="${vo.dept?.deptno}">
+					<option selected="selected">[[${vo.dept?.deptno}]]</option>
+					<option th:if="${vo.dept?.deptno != 10}">10</option>
+					<option th:if="${vo.dept?.deptno != 20}">20</option>
+					<option th:if="${vo.dept?.deptno != 30}">30</option>
+				</select>
+		</div> -->
 		<div class="form-group">
 			<label>Gender</label> <input class="form-control" name="gender"
 				th:value="${vo.gender}" />

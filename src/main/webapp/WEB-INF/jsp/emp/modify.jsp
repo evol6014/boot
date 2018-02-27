@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>emp modify.jsp</title>
+<title>Emp modify.jsp</title>
 
 <c:if test="${false}">
 <link rel="stylesheet" href="../../css/bootstrap.css">
@@ -29,6 +29,30 @@
 				value="${vo.ename}" />
 			<p class="help-block">Ename text here.</p>
 		</div>
+<!-- 	<div class="form-group">
+					<label>성별</label> 
+					<select name="gender">
+						<option>${vo.gender.name()}</option>
+						<option value='M' ${pageVO.type == 'M' ? 'selected' : ''}>M</option>
+						<option value='M' ${pageVO.type == 'F' ? 'selected' : ''}>F</option>
+					</select>
+					
+					<label>직급</label>
+					<select name="job">
+						<option ${vo.job == '사원' ? 'selected' : ''}>부장</option>
+						<option ${vo.job == '차장' ? 'selected' : ''}>차장</option>
+						<option ${vo.job == '과장' ? 'selected' : ''}>과장</option>
+						<option ${vo.job == '대리' ? 'selected' : ''}>대리</option>
+						<option ${vo.job == '사원' ? 'selected' : ''}>사원</option>
+					</select>
+					
+					<label>부서번호</label>
+					<select name="deptno">
+						<option ${vo.dept.deptno == '10' ? 'selected' : ''}>10</option>
+						<option ${vo.dept.deptno == '20' ? 'selected' : ''}>20</option>
+						<option ${vo.dept.deptno == '30' ? 'selected' : ''}>30</option>
+					</select>
+ 		</div> -->
 		<div class="form-group">
 			<label>Gender</label> <input class="form-control" name="gender"
 				value="${vo.gender}" />
@@ -45,6 +69,12 @@
 			<label>Hiredate</label> <input class="form-control" name="hiredate"
 				value="${vo.hiredate}" />
 		</div>
+<!-- 	<div class="form-group">
+			<label>입사일</label>
+			<fmt:formatDate var="hiredate" value="${vo.hiredate}" pattern="MM/dd/yyyy"/> 
+			<input class="form-control" name="hiredate" value="${hiredate}" />
+			<p class="help-block">MM/dd/yyyy</p>
+		</div> -->
 		<div class="form-group">
 			<label>Salary</label> <input class="form-control" name="sal"
 				value="${vo.sal}" />

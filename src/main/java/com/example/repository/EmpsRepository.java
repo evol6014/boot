@@ -12,6 +12,7 @@ import com.querydsl.core.types.Predicate;
 
 public interface EmpsRepository extends JpaRepository<EmpVO, Integer>, QuerydslPredicateExecutor<EmpVO>{
 
+	// dynamic쿼리를 만들어내기 위함
 	public default Predicate makePredicate(String type, String keyword) {
 		
 		BooleanBuilder builder = new BooleanBuilder();

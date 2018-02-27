@@ -15,6 +15,7 @@ import com.querydsl.core.types.Predicate;
 
 public interface WebBoardRepository extends JpaRepository<WebBoard, Long>, QuerydslPredicateExecutor<WebBoard>{
 
+	//dynamic쿼리를 만들어내기 위함
 	public default Predicate makePredicate(String type, String keyword){
 		
 		BooleanBuilder builder = new BooleanBuilder();

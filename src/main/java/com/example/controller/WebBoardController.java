@@ -28,6 +28,26 @@ public class WebBoardController {
 	@Inject
 	private WebBoardRepository repo;
 	
+	@GetMapping("/list")
+	public String list(@ModelAttribute("pageVO") PageVO vo, Model model){
+		
+		//db갔다 오는 logic
+		Pageable pageable = vo.makePageable(0, "bno");
+		Predicate predicate = repo.makePredicate(vo.getType(), vo.getKeyword());
+		
+		Page<WebBoard> result = repo.findAll(predicate, pageable);
+		
+		log.info(""+ pageable);
+		log.info(""+ result);
+		
+		log.info("TOTAL PAGE NUMBER: " + result.getTotalPages());
+		
+		
+		model.addAttribute("pageMaker", new PageMaker<WebBoard>(result));
+		
+		return "jsp/board/list";
+	}
+	
 	@GetMapping("/register")
 	public String registerGET(@ModelAttribute("vo")WebBoard vo ){
 		log.info("register get");
@@ -38,6 +58,7 @@ public class WebBoardController {
 		return "jsp/board/register";
 	}
 	
+	//post는 전문의 body로 들어옴, query형태 x
 	@PostMapping("/register")
 	public String registerPOST(@ModelAttribute("vo")WebBoard vo, RedirectAttributes rttr){
 		
@@ -114,22 +135,4 @@ public class WebBoardController {
 		return "redirect:/board/list";
 	}
 	
-	@GetMapping("/list")
-	public String list(@ModelAttribute("pageVO") PageVO vo, Model model){
-		
-		Pageable pageable = vo.makePageable(0, "bno");
-		Predicate predicate = repo.makePredicate(vo.getType(), vo.getKeyword());
-		
-		Page<WebBoard> result = repo.findAll(predicate, pageable);
-		
-		log.info(""+ pageable);
-		log.info(""+ result);
-
-		log.info("TOTAL PAGE NUMBER: " + result.getTotalPages());
-		
-		
-		model.addAttribute("pageMaker", new PageMaker<WebBoard>(result));
-				
-		return "jsp/board/list";
-	}
 }

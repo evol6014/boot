@@ -27,6 +27,7 @@ public class DeptsController {
 	@Inject
 	DeptsRepository repo;
 	
+	// return 없으면 이것을 논리적인 view로 봄.
 	@GetMapping("/list")
 	public String list(@ModelAttribute("pageVO") PageVO vo, Model model) {
 		

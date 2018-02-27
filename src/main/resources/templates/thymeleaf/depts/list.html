@@ -1,6 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/boards}">
+<!-- list가 호출되면 boards와 merge된다. view의 중복을 피하기 위해.. -->
 
 <head>
 <link rel="stylesheet" href="../css/bootstrap.css" th:remove="all">
@@ -14,6 +15,7 @@
 	<div class="panel-body">
 		<p>[[${pageMaker.result}]]</p>
 		<div th:with="result=${pageMaker.result}">
+			<!--pageMaker안의 result를(db에서가져온) 로컬변수 리졀트로 받음 -->
 		
 			<table class="table table-striped table-bordered table-hover" 
 				id="dataTables-example">

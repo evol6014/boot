@@ -10,6 +10,7 @@ import com.querydsl.core.types.Predicate;
 
 public interface DeptsRepository extends JpaRepository<DeptVO, Integer>, QuerydslPredicateExecutor<DeptVO>{
 
+	// dynamic쿼리를 만들어내기 위함
 	public default Predicate makePredicate(String type, String keyword) {
 		
 		BooleanBuilder builder = new BooleanBuilder();

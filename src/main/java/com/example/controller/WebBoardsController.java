@@ -27,6 +27,27 @@ public class WebBoardsController {
 	@Autowired
 	private WebBoardRepository repo;
 	
+	// return 없으면 이것을 논리적인 view로 봄.
+	@GetMapping("/list")
+	public String list(@ModelAttribute("pageVO") PageVO vo, Model model){
+		
+		Pageable pageable = vo.makePageable(0, "bno");
+		Predicate predicate = repo.makePredicate(vo.getType(), vo.getKeyword());
+		
+		Page<WebBoard> result = repo.findAll(predicate, pageable);
+		
+		log.info(""+ pageable);
+		log.info(""+ result);
+		
+		log.info("TOTAL PAGE NUMBER: " + result.getTotalPages());
+		
+		
+		model.addAttribute("pageMaker", new PageMaker<WebBoard>(result));
+				
+		return "thymeleaf/boards/list";
+	}
+	
+	// return 없으면 이것을 논리적인 view로 봄.
 	@GetMapping("/register")
 	public String registerGET(@ModelAttribute("vo")WebBoard vo ){
 		log.info("register get");
@@ -114,24 +135,7 @@ public class WebBoardsController {
 	}
 	
 	
-	@GetMapping("/list")
-	public String list(@ModelAttribute("pageVO") PageVO vo, Model model){
-		
-		Pageable pageable = vo.makePageable(0, "bno");
-		Predicate predicate = repo.makePredicate(vo.getType(), vo.getKeyword());
-		
-		Page<WebBoard> result = repo.findAll(predicate, pageable);
-		
-		log.info(""+ pageable);
-		log.info(""+ result);
-		
-		log.info("TOTAL PAGE NUMBER: " + result.getTotalPages());
-		
-		
-		model.addAttribute("pageMaker", new PageMaker<WebBoard>(result));
-				
-		return "thymeleaf/boards/list";
-	}
+
 
 }
 

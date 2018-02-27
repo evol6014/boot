@@ -16,6 +16,7 @@ import com.example.domain.DeptVO;
 import com.example.repository.DeptsRepository;
 import com.example.vo.PageMaker;
 import com.example.vo.PageVO;
+import com.querydsl.core.types.Predicate;
 
 import lombok.extern.java.Log;
 
@@ -27,10 +28,13 @@ public class DeptController {
 	@Inject
 	DeptsRepository repo;
 	
+	// return 없으면 이것을 논리적인 view로 봄.
 	@GetMapping("/list")
 	public String list(@ModelAttribute("pageVO") PageVO vo, Model model) {
 		
 		Pageable page = vo.makePageable(0, "deptno");
+//		Pageable pageable = vo.makePageable(0, "deptno");
+//		Predicate predicate = repo.makePredicate(vo.getType(), vo.getKeyword());
 		
 		Page<DeptVO> result = repo.findAll(
 									repo.makePredicate(vo.getType(), vo.getKeyword()), page);

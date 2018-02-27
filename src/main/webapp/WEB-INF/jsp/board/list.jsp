@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>list.jsp</title>
 
-<!-- list xxx -->
+<!-- For Content-Assist -->
 <c:if test="${false}">
 <link rel="stylesheet" href="../../css/bootstrap.css">
 <link rel="stylesheet" href="../../css/bootstrap-theme.css">
@@ -23,7 +23,7 @@
 		<p>${pageMaker.result}</p>
 		<c:set var="result" value="${pageMaker.result}"/>
 <%-- 		<div th:with="result=${pageMaker.result}"> 이건 타임리프 문법--%>
-		<div>
+		<div> <!--pageMaker안의 result를(db에서가져온) 로컬변수 리졀트로 받음 -->
 			<table class="table table-striped table-bordered table-hover"
 				id="dataTables-example">
 				<thead>
@@ -50,6 +50,7 @@
 				</tbody>
 			</table>
 
+<!-- 써치 -->
 			<div>
 				<select id='searchType'>
 					<option>--</option>
